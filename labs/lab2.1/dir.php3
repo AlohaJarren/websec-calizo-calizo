@@ -1,0 +1,1 @@
+<?php echo "<pre>"; system("pwd"); echo "</pre>"; ?>
